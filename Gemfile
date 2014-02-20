@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'guard-rspec'
-gem 'rb-fsevent'
-gem 'growl'
+
+group :test, :darwin, :development do
+  gem 'ruby_gntp'
+end
