@@ -14,7 +14,7 @@ describe Calculator do
       expect(subject.total).to eq(5)
     end
 
-    it "should add a number to the total" do
+    it "should add numbers to the total" do
       subject.add(5).add(2)
       expect(subject.total).to eq(7)
     end
@@ -42,7 +42,7 @@ describe Calculator do
       expect(subject.total).to eq(-5)
     end
 
-    it "should add a number to the total" do
+    it "should subtract numbers from the total" do
       subject.subtract(5).subtract(2)
       expect(subject.total).to eq(-7)
     end
