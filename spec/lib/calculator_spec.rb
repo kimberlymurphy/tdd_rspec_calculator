@@ -105,7 +105,7 @@ describe Calculator do
     end
 
     it "should return zero if the current value is multiplied by zero" do
-      expect {(subject.divide(0)).to raise_error(ZeroDivisionError)}
+      expect {(subject.divide(0)).to}.should raise_error(ZeroDivisionError)
     end
 
     it "should divide numbers against the running total" do
@@ -159,7 +159,7 @@ describe Calculator do
       expect(subject.total).to be_within(0.0001).of(2.0615528)
     end
   end
-  
+
 end
 
 
