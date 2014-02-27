@@ -64,6 +64,102 @@ describe Calculator do
     end
   end
 
+  describe ".multiply" do
+    it "should return zero if the current value is nil" do
+      subject.multiply(5)
+      expect(subject.total).to eq(0)
+    end
+
+    it "should return zero if the current value is multiplied by zero" do
+      subject.add(7).multiply(0)
+      expect(subject.total).to eq(0)
+    end
+
+    it "should multiply numbers against the running total" do
+      subject.add(1).multiply(5).multiply(2)
+      expect(subject.total).to eq(10)
+    end
+
+    it "should handle negative numbers" do
+      subject.add(10).multiply(-2)
+      expect(subject.total).to eq(-20)
+
+      subject.multiply(-4).multiply(10).multiply(8)
+      expect(subject.total).to eq(6400)
+    end
+
+    it "should handle floats" do
+      subject.add(1).multiply(2.5)
+      expect(subject.total).to eq(2.5)
+
+      subject.multiply(4.5).multiply(-31.257)
+      expect(subject.total).to be_within(0.0001).of(-351.64125)
+    end
+  end
+
+
+  describe ".divide" do
+    it "should return zero if the current value is nil" do
+      subject.divide(5)
+      expect(subject.total).to eq(0)
+    end
+
+    it "should return zero if the current value is multiplied by zero" do
+      expect {(subject.divide(0)).to raise_error(ZeroDivisionError)}
+    end
+
+    it "should divide numbers against the running total" do
+      subject.add(10).divide(5).divide(2)
+      expect(subject.total).to be_within(0.0001).of(1)
+    end
+
+    it "should handle negative numbers" do
+      subject.add(10).divide(-2)
+      expect(subject.total).to eq(-5)
+
+      subject.divide(-4).divide(10).divide(8)
+      expect(subject.total).to eq(0)
+    end
+
+    it "should handle floats" do
+      subject.add(1).divide(2.5)
+      expect(subject.total).to eq(0.4)
+
+      subject.divide(4.5).divide(-31.257)
+      expect(subject.total).to be_within(0.0001).of(-0.00284380)
+    end
+  end
+
+
+  describe ".sqrt" do
+    it "should return zero for a sqrt of 0" do
+      subject.sqrt(0)
+      expect(subject.total).to eq(0)
+    end
+
+    it "should return an Error for the square root of any negative number" do
+      expect {(subject.sqrt(-5))}.should raise_error(Math::DomainError)
+    end
+
+    it "should the square root of an integer number resulting in an integer" do
+      subject.sqrt(4)
+      expect(subject.total).to eq(2)
+    end
+
+    it "should the square root of an integer number resulting in a float" do
+      subject.sqrt(5)
+      expect(subject.total).to be_within(0.0001).of(2.2360680)
+    end
+
+    it "should handle square roots of floats" do
+      subject.sqrt(0.75)
+      expect(subject.total).to be_within(0.0001).of(0.8660254)
+
+      subject.sqrt(4.25)
+      expect(subject.total).to be_within(0.0001).of(2.0615528)
+    end
+  end
+  
 end
 
 

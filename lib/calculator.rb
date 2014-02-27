@@ -18,4 +18,18 @@ class Calculator
     return self
   end
 
+  def multiply(number)
+    @number *= number
+    return self
+  end
+
+  def divide(number)
+    @number /= number
+    return self
+  end
+
+  def sqrt(number)
+    @number = Math.sqrt(number)
+    return self
+  end
 end
